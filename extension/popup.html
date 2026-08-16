@@ -5,7 +5,7 @@
 
   <meta
     name="viewport"
-    content="width=device-width, initial-scale=1.0"
+    content="width=device-width, initial-scale=1"
   >
 
   <title>ZoonLogos</title>
@@ -18,22 +18,98 @@
 
 <body>
   <main>
-    <p class="brand">ZOONLOGOS</p>
+    <header>
+      <p class="brand">ZOONLOGOS</p>
+      <h1>Bağlamsal Çeviri</h1>
+    </header>
 
-    <h1>Bağlamsal Çeviri</h1>
-
-    <div id="serverStatus" class="status checking">
+    <div
+      id="serverStatus"
+      class="status checking"
+    >
       Sunucu kontrol ediliyor...
     </div>
 
-    <p class="information">
-      Prime Video üzerinde İngilizce altyazıdaki
-      kelimelerin bağlamsal Türkçe anlamını gösterir.
-    </p>
+    <section
+      id="consentPanel"
+      class="consent-panel"
+      hidden
+    >
+      <h2>Çeviriyi etkinleştir</h2>
 
-    <button id="checkButton" type="button">
+      <p>
+        Seçtiğin İngilizce kelime ve kelimenin
+        bulunduğu altyazı cümlesi, çeviri oluşturmak
+        amacıyla ZoonLogos sunucusuna ve Groq’a
+        gönderilir.
+      </p>
+
+      <label class="consent-choice">
+        <input
+          id="consentCheckbox"
+          type="checkbox"
+        >
+
+        <span>
+          Bu veri kullanımını okudum ve kabul ediyorum.
+        </span>
+      </label>
+
+      <button
+        id="saveConsentButton"
+        type="button"
+      >
+        Kabul et ve etkinleştir
+      </button>
+    </section>
+
+    <section
+      id="settingsPanel"
+      class="settings-panel"
+      hidden
+    >
+      <div class="setting-row">
+        <div>
+          <h2>ZoonLogos</h2>
+
+          <p id="enabledDescription">
+            İngilizce altyazılarda etkin
+          </p>
+        </div>
+
+        <label class="switch">
+          <input
+            id="enabledToggle"
+            type="checkbox"
+          >
+
+          <span class="switch-slider"></span>
+        </label>
+      </div>
+
+      <p class="information">
+        İngilizce altyazıdaki kelimenin bağlama uygun
+        Türkçe anlamını ve cümlenin çevirisini gösterir.
+      </p>
+    </section>
+
+    <button
+      id="checkButton"
+      class="secondary-button"
+      type="button"
+    >
       Bağlantıyı kontrol et
     </button>
+
+    <footer>
+      <a
+        id="privacyLink"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        Gizlilik Politikası
+      </a>
+    </footer>
   </main>
 
   <script src="popup.js"></script>
