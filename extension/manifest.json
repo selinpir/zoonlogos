@@ -8,7 +8,7 @@
     "storage"
   ],
   "host_permissions": [
-    "http://localhost:3000/*",
+    "https://zoonlogos-api.onrender.com/*",
     "https://www.primevideo.com/*",
     "https://*.primevideo.com/*"
   ],

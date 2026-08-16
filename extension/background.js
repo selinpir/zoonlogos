@@ -1,4 +1,4 @@
-const API_BASE_URL = "http://localhost:3000";
+const API_BASE_URL = "https://zoonlogos-api.onrender.com";
 
 chrome.runtime.onMessage.addListener(
   (message, sender, sendResponse) => {
