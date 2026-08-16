@@ -1,5 +1,5 @@
 const PRIVACY_POLICY_URL =
-  "https://SENIN-RENDER-ADRESIN.onrender.com/privacy.html";
+  "https://zoonlogos-api.onrender.com/privacy.html";
 
 
 const serverStatus =
