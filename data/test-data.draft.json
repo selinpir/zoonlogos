@@ -1,0 +1,450 @@
+[
+  {
+    "id": 1,
+    "category": "normal",
+    "sourceLanguage": "en",
+    "targetLanguage": "tr",
+    "previousSubtitle": null,
+    "currentSubtitle": "I am looking for a job.",
+    "nextSubtitle": null,
+    "selectedText": null,
+    "expectedTranslations": [
+      "Bir iş arıyorum.",
+      "İş arıyorum."
+    ],
+    "expectedMeanings": [],
+    "chromeTranslation": "",
+    "zoonLogosTranslation": "",
+    "detectedMeaning": "",
+    "sentenceResult": null,
+    "contextResult": null,
+    "notes": ""
+  },
+  {
+    "id": 2,
+    "category": "normal",
+    "sourceLanguage": "en",
+    "targetLanguage": "tr",
+    "previousSubtitle": null,
+    "currentSubtitle": "She closed the window.",
+    "nextSubtitle": null,
+    "selectedText": null,
+    "expectedTranslations": [
+      "Pencereyi kapattı.",
+      "O, pencereyi kapattı."
+    ],
+    "expectedMeanings": [],
+    "chromeTranslation": "",
+    "zoonLogosTranslation": "",
+    "detectedMeaning": "",
+    "sentenceResult": null,
+    "contextResult": null,
+    "notes": ""
+  },
+  {
+    "id": 3,
+    "category": "normal",
+    "sourceLanguage": "en",
+    "targetLanguage": "tr",
+    "previousSubtitle": null,
+    "currentSubtitle": "We will meet tomorrow.",
+    "nextSubtitle": null,
+    "selectedText": null,
+    "expectedTranslations": [
+      "Yarın buluşacağız.",
+      "Yarın görüşeceğiz."
+    ],
+    "expectedMeanings": [],
+    "chromeTranslation": "",
+    "zoonLogosTranslation": "",
+    "detectedMeaning": "",
+    "sentenceResult": null,
+    "contextResult": null,
+    "notes": ""
+  },
+  {
+    "id": 4,
+    "category": "normal",
+    "sourceLanguage": "en",
+    "targetLanguage": "tr",
+    "previousSubtitle": null,
+    "currentSubtitle": "They are watching a movie.",
+    "nextSubtitle": null,
+    "selectedText": null,
+    "expectedTranslations": [
+      "Film izliyorlar.",
+      "Bir film izliyorlar."
+    ],
+    "expectedMeanings": [],
+    "chromeTranslation": "",
+    "zoonLogosTranslation": "",
+    "detectedMeaning": "",
+    "sentenceResult": null,
+    "contextResult": null,
+    "notes": ""
+  },
+  {
+    "id": 5,
+    "category": "polysemous-word",
+    "sourceLanguage": "en",
+    "targetLanguage": "tr",
+    "previousSubtitle": null,
+    "currentSubtitle": "He sat on the bank of the river.",
+    "nextSubtitle": null,
+    "selectedText": "bank",
+    "expectedTranslations": [
+      "Nehrin kıyısına oturdu.",
+      "Nehir kıyısına oturdu."
+    ],
+    "expectedMeanings": [
+      "kıyı",
+      "nehir kıyısı"
+    ],
+    "chromeTranslation": "",
+    "zoonLogosTranslation": "",
+    "detectedMeaning": "",
+    "sentenceResult": null,
+    "contextResult": null,
+    "notes": ""
+  },
+  {
+    "id": 6,
+    "category": "polysemous-word",
+    "sourceLanguage": "en",
+    "targetLanguage": "tr",
+    "previousSubtitle": null,
+    "currentSubtitle": "This bag is very light.",
+    "nextSubtitle": null,
+    "selectedText": "light",
+    "expectedTranslations": [
+      "Bu çanta çok hafif."
+    ],
+    "expectedMeanings": [
+      "hafif"
+    ],
+    "chromeTranslation": "",
+    "zoonLogosTranslation": "",
+    "detectedMeaning": "",
+    "sentenceResult": null,
+    "contextResult": null,
+    "notes": ""
+  },
+  {
+    "id": 7,
+    "category": "polysemous-word",
+    "sourceLanguage": "en",
+    "targetLanguage": "tr",
+    "previousSubtitle": null,
+    "currentSubtitle": "They charged me twenty dollars.",
+    "nextSubtitle": null,
+    "selectedText": "charged",
+    "expectedTranslations": [
+      "Benden yirmi dolar aldılar.",
+      "Bana yirmi dolar ücret çıkardılar."
+    ],
+    "expectedMeanings": [
+      "ücret almak",
+      "ücretlendirmek"
+    ],
+    "chromeTranslation": "",
+    "zoonLogosTranslation": "",
+    "detectedMeaning": "",
+    "sentenceResult": null,
+    "contextResult": null,
+    "notes": ""
+  },
+  {
+    "id": 8,
+    "category": "polysemous-word",
+    "sourceLanguage": "en",
+    "targetLanguage": "tr",
+    "previousSubtitle": null,
+    "currentSubtitle": "My nose is running.",
+    "nextSubtitle": null,
+    "selectedText": "running",
+    "expectedTranslations": [
+      "Burnum akıyor."
+    ],
+    "expectedMeanings": [
+      "akmak"
+    ],
+    "chromeTranslation": "",
+    "zoonLogosTranslation": "",
+    "detectedMeaning": "",
+    "sentenceResult": null,
+    "contextResult": null,
+    "notes": ""
+  },
+  {
+    "id": 9,
+    "category": "phrasal-verb",
+    "sourceLanguage": "en",
+    "targetLanguage": "tr",
+    "previousSubtitle": null,
+    "currentSubtitle": "Don't give up now.",
+    "nextSubtitle": null,
+    "selectedText": "give up",
+    "expectedTranslations": [
+      "Şimdi pes etme.",
+      "Şimdi vazgeçme."
+    ],
+    "expectedMeanings": [
+      "pes etmek",
+      "vazgeçmek"
+    ],
+    "chromeTranslation": "",
+    "zoonLogosTranslation": "",
+    "detectedMeaning": "",
+    "sentenceResult": null,
+    "contextResult": null,
+    "notes": ""
+  },
+  {
+    "id": 10,
+    "category": "phrasal-verb",
+    "sourceLanguage": "en",
+    "targetLanguage": "tr",
+    "previousSubtitle": null,
+    "currentSubtitle": "Can you look after the children?",
+    "nextSubtitle": null,
+    "selectedText": "look after",
+    "expectedTranslations": [
+      "Çocuklarla ilgilenebilir misin?",
+      "Çocuklara bakabilir misin?"
+    ],
+    "expectedMeanings": [
+      "ilgilenmek",
+      "bakmak"
+    ],
+    "chromeTranslation": "",
+    "zoonLogosTranslation": "",
+    "detectedMeaning": "",
+    "sentenceResult": null,
+    "contextResult": null,
+    "notes": ""
+  },
+  {
+    "id": 11,
+    "category": "phrasal-verb",
+    "sourceLanguage": "en",
+    "targetLanguage": "tr",
+    "previousSubtitle": null,
+    "currentSubtitle": "We are running out of time.",
+    "nextSubtitle": null,
+    "selectedText": "running out of",
+    "expectedTranslations": [
+      "Zamanımız tükeniyor.",
+      "Zamanımız azalıyor."
+    ],
+    "expectedMeanings": [
+      "tükenmek",
+      "azalmak"
+    ],
+    "chromeTranslation": "",
+    "zoonLogosTranslation": "",
+    "detectedMeaning": "",
+    "sentenceResult": null,
+    "contextResult": null,
+    "notes": ""
+  },
+  {
+    "id": 12,
+    "category": "idiom-slang",
+    "sourceLanguage": "en",
+    "targetLanguage": "tr",
+    "previousSubtitle": null,
+    "currentSubtitle": "The exam was a piece of cake.",
+    "nextSubtitle": null,
+    "selectedText": "a piece of cake",
+    "expectedTranslations": [
+      "Sınav çok kolaydı.",
+      "Sınav çocuk oyuncağıydı."
+    ],
+    "expectedMeanings": [
+      "çok kolay",
+      "çocuk oyuncağı"
+    ],
+    "chromeTranslation": "",
+    "zoonLogosTranslation": "",
+    "detectedMeaning": "",
+    "sentenceResult": null,
+    "contextResult": null,
+    "notes": ""
+  },
+  {
+    "id": 13,
+    "category": "idiom-slang",
+    "sourceLanguage": "en",
+    "targetLanguage": "tr",
+    "previousSubtitle": null,
+    "currentSubtitle": "We should hit the road.",
+    "nextSubtitle": null,
+    "selectedText": "hit the road",
+    "expectedTranslations": [
+      "Yola çıkmalıyız.",
+      "Artık yola koyulmalıyız."
+    ],
+    "expectedMeanings": [
+      "yola çıkmak",
+      "yola koyulmak"
+    ],
+    "chromeTranslation": "",
+    "zoonLogosTranslation": "",
+    "detectedMeaning": "",
+    "sentenceResult": null,
+    "contextResult": null,
+    "notes": ""
+  },
+  {
+    "id": 14,
+    "category": "previous-context",
+    "sourceLanguage": "en",
+    "targetLanguage": "tr",
+    "previousSubtitle": "John dropped the glass.",
+    "currentSubtitle": "It broke immediately.",
+    "nextSubtitle": "There was glass everywhere.",
+    "selectedText": "It",
+    "expectedTranslations": [
+      "Bardak hemen kırıldı.",
+      "Hemen kırıldı."
+    ],
+    "expectedMeanings": [
+      "bardak"
+    ],
+    "chromeTranslation": "",
+    "zoonLogosTranslation": "",
+    "detectedMeaning": "",
+    "sentenceResult": null,
+    "contextResult": null,
+    "notes": ""
+  },
+  {
+    "id": 15,
+    "category": "previous-context",
+    "sourceLanguage": "en",
+    "targetLanguage": "tr",
+    "previousSubtitle": "Maria offered me a job.",
+    "currentSubtitle": "I turned it down.",
+    "nextSubtitle": "The salary was too low.",
+    "selectedText": "turned it down",
+    "expectedTranslations": [
+      "Teklifi reddettim.",
+      "İş teklifini reddettim."
+    ],
+    "expectedMeanings": [
+      "teklifi reddetmek",
+      "iş teklifini reddetmek"
+    ],
+    "chromeTranslation": "",
+    "zoonLogosTranslation": "",
+    "detectedMeaning": "",
+    "sentenceResult": null,
+    "contextResult": null,
+    "notes": ""
+  },
+  {
+    "id": 16,
+    "category": "tr-en",
+    "sourceLanguage": "tr",
+    "targetLanguage": "en",
+    "previousSubtitle": null,
+    "currentSubtitle": "Bir iş arıyorum.",
+    "nextSubtitle": null,
+    "selectedText": null,
+    "expectedTranslations": [
+      "I am looking for a job.",
+      "I'm looking for a job."
+    ],
+    "expectedMeanings": [],
+    "chromeTranslation": "",
+    "zoonLogosTranslation": "",
+    "detectedMeaning": "",
+    "sentenceResult": null,
+    "contextResult": null,
+    "notes": ""
+  },
+  {
+    "id": 17,
+    "category": "tr-en",
+    "sourceLanguage": "tr",
+    "targetLanguage": "en",
+    "previousSubtitle": null,
+    "currentSubtitle": "Yarın seni arayacağım.",
+    "nextSubtitle": null,
+    "selectedText": null,
+    "expectedTranslations": [
+      "I will call you tomorrow.",
+      "I'll call you tomorrow."
+    ],
+    "expectedMeanings": [],
+    "chromeTranslation": "",
+    "zoonLogosTranslation": "",
+    "detectedMeaning": "",
+    "sentenceResult": null,
+    "contextResult": null,
+    "notes": ""
+  },
+  {
+    "id": 18,
+    "category": "tr-en",
+    "sourceLanguage": "tr",
+    "targetLanguage": "en",
+    "previousSubtitle": null,
+    "currentSubtitle": "Buna daha fazla dayanamıyorum.",
+    "nextSubtitle": null,
+    "selectedText": null,
+    "expectedTranslations": [
+      "I can't bear this anymore.",
+      "I cannot stand this anymore."
+    ],
+    "expectedMeanings": [],
+    "chromeTranslation": "",
+    "zoonLogosTranslation": "",
+    "detectedMeaning": "",
+    "sentenceResult": null,
+    "contextResult": null,
+    "notes": ""
+  },
+  {
+    "id": 19,
+    "category": "tr-en",
+    "sourceLanguage": "tr",
+    "targetLanguage": "en",
+    "previousSubtitle": null,
+    "currentSubtitle": "Köşeden sağa dön.",
+    "nextSubtitle": null,
+    "selectedText": null,
+    "expectedTranslations": [
+      "Turn right at the corner."
+    ],
+    "expectedMeanings": [],
+    "chromeTranslation": "",
+    "zoonLogosTranslation": "",
+    "detectedMeaning": "",
+    "sentenceResult": null,
+    "contextResult": null,
+    "notes": ""
+  },
+  {
+    "id": 20,
+    "category": "tr-en",
+    "sourceLanguage": "tr",
+    "targetLanguage": "en",
+    "previousSubtitle": null,
+    "currentSubtitle": "Bir şirket yönetiyor.",
+    "nextSubtitle": null,
+    "selectedText": null,
+    "expectedTranslations": [
+      "She runs a company.",
+      "He runs a company.",
+      "They run a company."
+    ],
+    "expectedMeanings": [],
+    "chromeTranslation": "",
+    "zoonLogosTranslation": "",
+    "detectedMeaning": "",
+    "sentenceResult": null,
+    "contextResult": null,
+    "notes": "Türkçede özne cinsiyeti belirtilmediği için birden fazla İngilizce karşılık kabul edilir."
+  }
+]

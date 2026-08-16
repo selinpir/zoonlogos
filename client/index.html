@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <title>ZoonLogos</title>
+
+  <link
+    rel="stylesheet"
+    href="style.css"
+  >
+</head>
+
+<body>
+  <main class="container">
+    <header>
+      <p class="brand">ZOONLOGOS</p>
+
+      <h1>Bağlamsal Altyazı Çevirisi</h1>
+
+      <p>
+        Cümleyi çevirir; seçilen kelimenin anlamını
+        cümle bağlamına göre açıklar.
+      </p>
+    </header>
+
+    <form id="translationForm">
+      <section class="translator-card">
+        <div class="language-row">
+          <div>
+            <label for="sourceLanguage">
+              Kaynak dil
+            </label>
+
+            <select id="sourceLanguage">
+              <option value="en" selected>
+                İngilizce
+              </option>
+
+              <option value="tr">
+                Türkçe
+              </option>
+            </select>
+          </div>
+
+          <button
+            id="swapLanguages"
+            class="swap-button"
+            type="button"
+            title="Dilleri değiştir"
+          >
+            ⇄
+          </button>
+
+          <div>
+            <label for="targetLanguage">
+              Hedef dil
+            </label>
+
+            <select id="targetLanguage">
+              <option value="tr" selected>
+                Türkçe
+              </option>
+
+              <option value="en">
+                İngilizce
+              </option>
+            </select>
+          </div>
+        </div>
+
+        <label for="currentSubtitle">
+          Çevrilecek cümle
+        </label>
+
+        <textarea
+          id="currentSubtitle"
+          rows="4"
+          required
+          placeholder="Çevrilecek cümleyi yazın."
+        >My nose is running.</textarea>
+
+        <label for="selectedText">
+          Anlamı incelenecek kelime veya ifade
+        </label>
+
+        <input
+          id="selectedText"
+          type="text"
+          value="running"
+          placeholder="İsteğe bağlı — örneğin: running"
+        >
+
+        <p class="field-help">
+          Boş bırakırsan yalnızca cümle çevrilir.
+        </p>
+
+        <button
+          id="translateButton"
+          class="translate-button"
+          type="submit"
+        >
+          Groq ile çevir
+        </button>
+
+        <p id="statusMessage">
+          Çeviri yapılmaya hazır.
+        </p>
+      </section>
+    </form>
+
+    <section
+      id="resultCard"
+      class="result-card"
+      hidden
+    >
+      <h2>Çeviri sonucu</h2>
+
+      <div class="primary-result">
+        <span>Cümle çevirisi</span>
+        <p id="translationResult">—</p>
+      </div>
+
+      <div
+        id="wordResultArea"
+        class="result-grid"
+      >
+        <div>
+          <span>Bağlamsal kelime anlamı</span>
+          <p id="selectedMeaning">—</p>
+        </div>
+
+        <div>
+          <span>Güven seviyesi</span>
+          <p id="confidence">—</p>
+        </div>
+      </div>
+
+      <div
+        id="explanationArea"
+        class="explanation"
+      >
+        <span>Kısa açıklama</span>
+        <p id="explanation">—</p>
+      </div>
+
+      <details class="technical-details">
+        <summary>Teknik bilgiler</summary>
+
+        <p>
+          <strong>Kullanılan model:</strong>
+          <span id="modelUsed">—</span>
+        </p>
+
+        <p>
+          <strong>Denenen modeller:</strong>
+          <span id="attemptedModels">—</span>
+        </p>
+
+        <p>
+          <strong>Önbellek:</strong>
+          <span id="cacheStatus">—</span>
+        </p>
+
+        <div id="fallbackArea" hidden>
+          <strong>Model geçişleri:</strong>
+          <ul id="fallbackReasons"></ul>
+        </div>
+      </details>
+    </section>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>

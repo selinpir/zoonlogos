@@ -1,0 +1,356 @@
+#zoonlogos-extension-status,
+#zoonlogos-caption-overlay,
+#zoonlogos-word-tooltip {
+  font-family:
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    Arial,
+    sans-serif;
+}
+
+#zoonlogos-extension-status {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 2147483647;
+
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  padding: 9px 13px;
+
+  border: 1px solid
+    rgb(255 255 255 / 14%);
+
+  border-radius: 8px;
+
+  background:
+    rgb(24 27 25 / 92%);
+
+  color: #f5f2ea;
+
+  font-size: 12px;
+  font-weight: 600;
+
+  box-shadow:
+    0 8px 28px rgb(0 0 0 / 28%);
+
+  pointer-events: none;
+
+  transition:
+    opacity 0.25s ease,
+    transform 0.25s ease;
+}
+
+#zoonlogos-extension-status::before {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #b5aa96;
+  content: "";
+}
+
+#zoonlogos-extension-status.zoonlogos-online::before {
+  background: #8fa88f;
+}
+
+#zoonlogos-extension-status.zoonlogos-offline::before {
+  background: #c77b70;
+}
+
+.zoonlogos-status-small {
+  opacity: 0.5;
+  transform: translateY(-3px);
+}
+
+#zoonlogos-caption-overlay {
+  position: fixed;
+  z-index: 2147483646;
+
+  display: block;
+
+  margin: 0;
+  padding: 0;
+
+  color: transparent;
+  white-space: normal;
+
+  background: transparent;
+
+  pointer-events: none;
+}
+
+#zoonlogos-caption-overlay[hidden] {
+  display: none;
+}
+
+.zoonlogos-overlay-word {
+  color: transparent;
+
+  border-radius: 2px;
+
+  cursor: help;
+  pointer-events: auto;
+
+  transition:
+    color 0.15s ease,
+    background-color 0.15s ease;
+}
+
+.zoonlogos-overlay-word:hover {
+  color: #fffaf0;
+
+  background:
+    rgb(179 146 98 / 42%);
+
+  box-shadow:
+    inset 0 -2px 0 #b39262;
+}
+
+#zoonlogos-word-tooltip {
+  position: fixed;
+  z-index: 2147483647;
+
+  width: 330px;
+  padding: 16px 17px;
+
+  border: 1px solid
+    rgb(199 177 141 / 30%);
+
+  border-radius: 9px;
+
+  background:
+    rgb(20 22 21 / 96%);
+
+  color: #f5f2ea;
+
+  box-shadow:
+    0 16px 46px rgb(0 0 0 / 48%);
+
+  backdrop-filter: blur(16px);
+
+  pointer-events: none;
+}
+
+#zoonlogos-word-tooltip[hidden] {
+  display: none;
+}
+
+#zoonlogos-word-tooltip span {
+  display: block;
+}
+
+.zoonlogos-tooltip-word {
+  margin-bottom: 4px;
+
+  color: #c7b18d;
+
+  font-family:
+    Georgia,
+    "Times New Roman",
+    serif;
+
+  font-size: 16px;
+  font-style: italic;
+}
+
+.zoonlogos-tooltip-meaning {
+  margin-bottom: 11px;
+  color: #faf8f2;
+  font-size: 19px;
+  font-weight: 600;
+}
+
+.zoonlogos-tooltip-sentence {
+  padding-top: 10px;
+
+  border-top: 1px solid
+    rgb(255 255 255 / 12%);
+
+  color: #e2ded4;
+  font-size: 14px;
+  line-height: 1.45;
+}
+
+.zoonlogos-tooltip-explanation {
+  margin-top: 8px;
+  color: #aaa69d;
+  font-size: 12px;
+  line-height: 1.4;
+}
+
+.zoonlogos-tooltip-loading {
+  color: #bbb6ac;
+  font-size: 13px;
+}
+
+.zoonlogos-tooltip-error {
+  color: #d9a199;
+  font-size: 13px;
+}
+
+
+
+#zoonlogos-status,
+#zoonlogos-status.zoonlogos-status-hidden {
+  position: fixed !important;
+  top: 18px !important;
+  right: 18px !important;
+  bottom: auto !important;
+  left: auto !important;
+
+  display: flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+
+  padding: 9px 13px !important;
+
+  color: #f5f1e8 !important;
+  background: rgba(24, 25, 27, 0.92) !important;
+  border: 1px solid rgba(190, 160, 105, 0.55) !important;
+  border-radius: 10px !important;
+
+  font-family:
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    sans-serif !important;
+
+  font-size: 13px !important;
+  font-weight: 600 !important;
+  line-height: 1 !important;
+
+  opacity: 1 !important;
+  visibility: visible !important;
+  transform: none !important;
+  pointer-events: none !important;
+
+  z-index: 2147483647 !important;
+
+  box-shadow:
+    0 8px 28px rgba(0, 0, 0, 0.3) !important;
+}
+
+#zoonlogos-status .zoonlogos-status-dot {
+  display: block !important;
+  width: 7px !important;
+  height: 7px !important;
+  flex: 0 0 7px !important;
+
+  background: #a8b89a !important;
+  border-radius: 50% !important;
+
+  box-shadow:
+    0 0 0 3px rgba(168, 184, 154, 0.15) !important;
+}
+
+#zoonlogos-status .zoonlogos-status-text {
+  display: inline !important;
+  color: #f5f1e8 !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
+#zoonlogos-tooltip {
+  position: fixed !important;
+  top: 0;
+  left: 0;
+
+  display: none !important;
+  width: max-content !important;
+  min-width: 170px !important;
+  max-width: 290px !important;
+
+  padding: 12px 14px !important;
+
+  color: #f5f1e8 !important;
+  background: rgba(24, 25, 27, 0.96) !important;
+
+  border: 1px solid rgba(190, 160, 105, 0.55) !important;
+  border-radius: 10px !important;
+
+  font-family:
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    sans-serif !important;
+
+  font-size: 14px !important;
+  line-height: 1.4 !important;
+
+  opacity: 0 !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+
+  z-index: 2147483647 !important;
+
+  box-shadow:
+    0 12px 35px rgba(0, 0, 0, 0.4) !important;
+}
+
+#zoonlogos-tooltip.zoonlogos-tooltip-visible {
+  display: block !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
+#zoonlogos-tooltip .zoonlogos-tooltip-header {
+  display: flex !important;
+  align-items: baseline !important;
+  gap: 8px !important;
+}
+
+#zoonlogos-tooltip .zoonlogos-tooltip-word {
+  display: inline !important;
+  color: #d4b477 !important;
+  font-weight: 700 !important;
+}
+
+#zoonlogos-tooltip .zoonlogos-tooltip-arrow {
+  display: inline !important;
+  color: #8f928c !important;
+}
+
+#zoonlogos-tooltip .zoonlogos-tooltip-meaning {
+  display: inline !important;
+  color: #ffffff !important;
+  font-weight: 600 !important;
+}
+
+#zoonlogos-tooltip .zoonlogos-tooltip-loading,
+#zoonlogos-tooltip .zoonlogos-tooltip-error {
+  display: block !important;
+  margin-top: 5px !important;
+  color: #d9d6cf !important;
+  font-size: 12px !important;
+}
+
+#zoonlogos-tooltip .zoonlogos-tooltip-error {
+  color: #e7a59c !important;
+}
+
+#zoonlogos-tooltip .zoonlogos-tooltip-explanation {
+  display: block !important;
+  margin: 8px 0 0 !important;
+  padding-top: 8px !important;
+
+  color: #cbc7bd !important;
+  border-top: 1px solid rgba(255, 255, 255, 0.1) !important;
+
+  font-size: 12px !important;
+  line-height: 1.45 !important;
+}
+
+#zoonlogos-tooltip .zoonlogos-tooltip-sentence {
+  display: block !important;
+  margin: 9px 0 0 !important;
+  padding-top: 8px !important;
+
+  color: #f1eee7 !important;
+  border-top: 1px solid rgba(255, 255, 255, 0.12) !important;
+
+  font-size: 13px !important;
+  line-height: 1.45 !important;
+}
