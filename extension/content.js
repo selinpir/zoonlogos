@@ -2,10 +2,13 @@
   const CAPTION_SELECTOR =
     ".atvwebplayersdk-captions-text";
 
-const HOVER_DELAY = 250;
+  const HOVER_DELAY = 250;
 
   let tooltipElement = null;
   let statusElement = null;
+
+  let zoonlogosEnabled = false;
+  let zoonlogosConsent = false;
 
   let lastPointer = {
     x: 0,
@@ -22,9 +25,16 @@ const HOVER_DELAY = 250;
 
   initializeZoonLogos();
 
+
   function initializeZoonLogos() {
     createInterface();
     mountInterface();
+
+    loadExtensionSettings();
+
+    chrome.storage.onChanged.addListener(
+      handleStorageChange
+    );
 
     document.addEventListener(
       "pointermove",
@@ -53,12 +63,111 @@ const HOVER_DELAY = 250;
       clearActiveWord
     );
 
-    showStatus("ZoonLogos aktif");
+    showStatus(
+      "ZoonLogos hazırlanıyor..."
+    );
   }
 
+
+  function loadExtensionSettings() {
+    chrome.storage.local.get(
+      {
+        zoonlogosConsent: false,
+        zoonlogosEnabled: false
+      },
+
+      (settings) => {
+        if (chrome.runtime.lastError) {
+          console.error(
+            "ZoonLogos ayarları okunamadı:",
+            chrome.runtime.lastError.message
+          );
+
+          applyExtensionState(
+            false,
+            false
+          );
+
+          return;
+        }
+
+        applyExtensionState(
+          settings.zoonlogosConsent,
+          settings.zoonlogosEnabled
+        );
+      }
+    );
+  }
+
+
+  function handleStorageChange(
+    changes,
+    storageArea
+  ) {
+    if (storageArea !== "local") {
+      return;
+    }
+
+    const consent =
+      changes.zoonlogosConsent
+        ? changes.zoonlogosConsent.newValue
+        : zoonlogosConsent;
+
+    const enabled =
+      changes.zoonlogosEnabled
+        ? changes.zoonlogosEnabled.newValue
+        : zoonlogosEnabled;
+
+    applyExtensionState(
+      consent,
+      enabled
+    );
+  }
+
+
+  function applyExtensionState(
+    consent,
+    enabled
+  ) {
+    zoonlogosConsent =
+      Boolean(consent);
+
+    zoonlogosEnabled =
+      zoonlogosConsent &&
+      Boolean(enabled);
+
+    if (zoonlogosEnabled) {
+      statusElement?.classList.remove(
+        "zoonlogos-status-disabled"
+      );
+
+      showStatus(
+        "ZoonLogos aktif"
+      );
+
+      return;
+    }
+
+    clearActiveWord();
+
+    statusElement?.classList.add(
+      "zoonlogos-status-disabled"
+    );
+
+    showStatus(
+      zoonlogosConsent
+        ? "ZoonLogos kapalı"
+        : "ZoonLogos için onay gerekli"
+    );
+  }
+
+
   function createInterface() {
-    statusElement = document.createElement("div");
-    statusElement.id = "zoonlogos-status";
+    statusElement =
+      document.createElement("div");
+
+    statusElement.id =
+      "zoonlogos-status";
 
     const statusDot =
       document.createElement("span");
@@ -94,21 +203,32 @@ const HOVER_DELAY = 250;
     );
   }
 
+
   function mountInterface() {
-    const host = getInterfaceHost();
+    const host =
+      getInterfaceHost();
 
     if (!host) {
       return;
     }
 
-    if (statusElement.parentElement !== host) {
-      host.appendChild(statusElement);
+    if (
+      statusElement.parentElement !== host
+    ) {
+      host.appendChild(
+        statusElement
+      );
     }
 
-    if (tooltipElement.parentElement !== host) {
-      host.appendChild(tooltipElement);
+    if (
+      tooltipElement.parentElement !== host
+    ) {
+      host.appendChild(
+        tooltipElement
+      );
     }
   }
+
 
   function getInterfaceHost() {
     const fullscreenElement =
@@ -124,12 +244,17 @@ const HOVER_DELAY = 250;
     return document.documentElement;
   }
 
+
   function handleFullscreenChange() {
-    window.setTimeout(() => {
-      mountInterface();
-      clearActiveWord();
-    }, 100);
+    window.setTimeout(
+      () => {
+        mountInterface();
+        clearActiveWord();
+      },
+      100
+    );
   }
+
 
   function handlePointerMove(event) {
     lastPointer = {
@@ -137,23 +262,36 @@ const HOVER_DELAY = 250;
       y: event.clientY
     };
 
+    if (!zoonlogosEnabled) {
+      hideTooltip();
+      return;
+    }
+
     if (animationFramePending) {
       return;
     }
 
     animationFramePending = true;
 
-    requestAnimationFrame(() => {
-      animationFramePending = false;
+    requestAnimationFrame(
+      () => {
+        animationFramePending = false;
 
-      inspectPointer(
-        lastPointer.x,
-        lastPointer.y
-      );
-    });
+        inspectPointer(
+          lastPointer.x,
+          lastPointer.y
+        );
+      }
+    );
   }
 
+
   function inspectPointer(x, y) {
+    if (!zoonlogosEnabled) {
+      clearActiveWord();
+      return;
+    }
+
     const caption =
       findCaptionAtPoint(x, y);
 
@@ -163,7 +301,11 @@ const HOVER_DELAY = 250;
     }
 
     const wordInformation =
-      findWordAtPoint(caption, x, y);
+      findWordAtPoint(
+        caption,
+        x,
+        y
+      );
 
     if (!wordInformation) {
       clearActiveWord();
@@ -193,7 +335,11 @@ const HOVER_DELAY = 250;
     });
   }
 
-  function findCaptionAtPoint(x, y) {
+
+  function findCaptionAtPoint(
+    x,
+    y
+  ) {
     const captions =
       document.querySelectorAll(
         CAPTION_SELECTOR
@@ -205,7 +351,9 @@ const HOVER_DELAY = 250;
       }
 
       const sentence =
-        normalizeText(caption.innerText);
+        normalizeText(
+          caption.innerText
+        );
 
       if (!sentence) {
         continue;
@@ -228,13 +376,16 @@ const HOVER_DELAY = 250;
     return null;
   }
 
+
   function findWordAtPoint(
     caption,
     x,
     y
   ) {
     const sentence =
-      normalizeText(caption.innerText);
+      normalizeText(
+        caption.innerText
+      );
 
     if (!sentence) {
       return null;
@@ -246,7 +397,9 @@ const HOVER_DELAY = 250;
         NodeFilter.SHOW_TEXT,
         {
           acceptNode(node) {
-            if (!node.nodeValue?.trim()) {
+            if (
+              !node.nodeValue?.trim()
+            ) {
               return NodeFilter.FILTER_REJECT;
             }
 
@@ -260,7 +413,8 @@ const HOVER_DELAY = 250;
     while (
       (textNode = walker.nextNode())
     ) {
-      const text = textNode.nodeValue;
+      const text =
+        textNode.nodeValue;
 
       const wordPattern =
         /[A-Za-z]+(?:['’\-][A-Za-z]+)*/g;
@@ -280,13 +434,17 @@ const HOVER_DELAY = 250;
 
         range.setEnd(
           textNode,
-          match.index + match[0].length
+          match.index +
+          match[0].length
         );
 
         const rectangles =
           range.getClientRects();
 
-        for (const rectangle of rectangles) {
+        for (
+          const rectangle
+          of rectangles
+        ) {
           const pointerIsInside =
             x >= rectangle.left - 3 &&
             x <= rectangle.right + 3 &&
@@ -295,7 +453,11 @@ const HOVER_DELAY = 250;
 
           if (pointerIsInside) {
             return {
-              word: cleanWord(match[0]),
+              word:
+                cleanWord(
+                  match[0]
+                ),
+
               sentence
             };
           }
@@ -306,90 +468,107 @@ const HOVER_DELAY = 250;
     return null;
   }
 
+
   function startWordHover({
-  key,
-  word,
-  sentence,
-  x,
-  y
-}) {
-  cancelHoverTimer();
+    key,
+    word,
+    sentence,
+    x,
+    y
+  }) {
+    cancelHoverTimer();
 
-  activeKey = key;
-  requestNumber += 1;
+    activeKey = key;
+    requestNumber += 1;
 
-  const currentRequest =
-    requestNumber;
+    const currentRequest =
+      requestNumber;
 
-  hideTooltip();
+    hideTooltip();
 
-  hoverTimer = window.setTimeout(
-    async () => {
-      if (
-        currentRequest !== requestNumber ||
-        activeKey !== key
-      ) {
-        return;
-      }
+    hoverTimer =
+      window.setTimeout(
+        async () => {
+          if (
+            currentRequest !==
+              requestNumber ||
+            activeKey !== key
+          ) {
+            return;
+          }
 
-      positionTooltip(x, y);
-      showLoading(word);
+          positionTooltip(x, y);
+          showLoading(word);
 
-      try {
-        const result =
-          await getTranslation(
-            sentence,
-            word,
-            key
-          );
+          try {
+            const result =
+              await getTranslation(
+                sentence,
+                word,
+                key
+              );
 
-        if (
-          currentRequest !== requestNumber ||
-          activeKey !== key
-        ) {
-          return;
-        }
+            if (
+              currentRequest !==
+                requestNumber ||
+              activeKey !== key
+            ) {
+              return;
+            }
 
-        showTranslation(
-          word,
-          result
-        );
-      } catch (error) {
-        const requestIsStillActive =
-          currentRequest === requestNumber &&
-          activeKey === key;
+            showTranslation(
+              word,
+              result
+            );
+          } catch (error) {
+            const requestIsStillActive =
+              currentRequest ===
+                requestNumber &&
+              activeKey === key;
 
-        if (!requestIsStillActive) {
-          return;
-        }
+            if (
+              !requestIsStillActive
+            ) {
+              return;
+            }
 
-        console.error(
-          "ZoonLogos çeviri hatası:",
-          error
-        );
+            console.error(
+              "ZoonLogos çeviri hatası:",
+              error
+            );
 
-        showError(
-          word,
-          error.message ||
-            "Çeviri yapılamadı."
-        );
-      }
-    },
-    HOVER_DELAY
-  );
-}
+            showError(
+              word,
+              error.message ||
+                "Çeviri yapılamadı."
+            );
+          }
+        },
+
+        HOVER_DELAY
+      );
+  }
+
 
   async function getTranslation(
     sentence,
     word,
     key
   ) {
-    if (translationCache.has(key)) {
-      return translationCache.get(key);
+    if (
+      translationCache.has(key)
+    ) {
+      return translationCache.get(
+        key
+      );
     }
 
-    if (pendingRequests.has(key)) {
-      return pendingRequests.get(key);
+    if (
+      pendingRequests.has(key)
+    ) {
+      return pendingRequests.get(
+        key
+      );
     }
 
     const request =
@@ -398,10 +577,14 @@ const HOVER_DELAY = 250;
         word
       );
 
-    pendingRequests.set(key, request);
+    pendingRequests.set(
+      key,
+      request
+    );
 
     try {
-      const result = await request;
+      const result =
+        await request;
 
       translationCache.set(
         key,
@@ -410,89 +593,105 @@ const HOVER_DELAY = 250;
 
       return result;
     } finally {
-      pendingRequests.delete(key);
+      pendingRequests.delete(
+        key
+      );
     }
   }
 
- async function sendTranslationRequest(
-  sentence,
-  word
-) {
-  const response =
-    await chrome.runtime.sendMessage({
-      type: "TRANSLATE_SUBTITLE",
 
-      payload: {
-        sourceLanguage: "en",
-        targetLanguage: "tr",
-        currentSubtitle: sentence,
-        selectedText: word
-      }
-    });
-
-  if (
-    !response ||
-    (response.ok !== true &&
-      response.success !== true)
+  async function sendTranslationRequest(
+    sentence,
+    word
   ) {
-    console.error(
-      "Background cevabı:",
-      response
-    );
+    const response =
+      await chrome.runtime.sendMessage({
+        type: "TRANSLATE_SUBTITLE",
 
-    throw new Error(
-      response?.error ||
-      "Çeviri yapılamadı."
-    );
+        payload: {
+          sourceLanguage: "en",
+          targetLanguage: "tr",
+          currentSubtitle: sentence,
+          selectedText: word
+        }
+      });
+
+    if (
+      !response ||
+      (
+        response.ok !== true &&
+        response.success !== true
+      )
+    ) {
+      console.error(
+        "Background cevabı:",
+        response
+      );
+
+      throw new Error(
+        response?.error ||
+          "Çeviri yapılamadı."
+      );
+    }
+
+    const data =
+      response.data;
+
+    if (
+      !data ||
+      typeof data !== "object"
+    ) {
+      console.error(
+        "Beklenmeyen sunucu cevabı:",
+        response
+      );
+
+      throw new Error(
+        "Sunucudan çeviri sonucu alınamadı."
+      );
+    }
+
+    const meaning =
+      data.meaning ||
+      data.wordMeaning ||
+      data.selectedMeaning;
+
+    const sentenceTranslation =
+      data.translation ||
+      data.sentenceTranslation;
+
+    if (
+      !meaning &&
+      !sentenceTranslation
+    ) {
+      console.error(
+        "Eksik çeviri cevabı:",
+        response
+      );
+
+      throw new Error(
+        "Kelime ve cümle çevirisi alınamadı."
+      );
+    }
+
+    return {
+      meaning:
+        meaning ||
+        sentenceTranslation,
+
+      sentenceTranslation:
+        sentenceTranslation || "",
+
+      explanation:
+        data.explanation || ""
+    };
   }
 
-  const data = response.data;
 
-  if (!data || typeof data !== "object") {
-    console.error(
-      "Beklenmeyen sunucu cevabı:",
-      response
-    );
-
-    throw new Error(
-      "Sunucudan çeviri sonucu alınamadı."
-    );
-  }
-
-  const meaning =
-    data.meaning ||
-    data.wordMeaning ||
-    data.selectedMeaning;
-
-  const sentenceTranslation =
-    data.translation ||
-    data.sentenceTranslation;
-
-  if (!meaning && !sentenceTranslation) {
-    console.error(
-      "Eksik çeviri cevabı:",
-      response
-    );
-
-    throw new Error(
-      "Kelime ve cümle çevirisi alınamadı."
-    );
-  }
-
-  return {
-    meaning:
-      meaning ||
-      sentenceTranslation,
-
-    sentenceTranslation:
-      sentenceTranslation || "",
-
-    explanation:
-      data.explanation || ""
-  };
-}
-
-  function positionTooltip(x, y) {
+  function positionTooltip(
+    x,
+    y
+  ) {
     if (!tooltipElement) {
       return;
     }
@@ -508,7 +707,9 @@ const HOVER_DELAY = 250;
       window.innerWidth - margin
     ) {
       left =
-        x - tooltipWidth - 16;
+        x -
+        tooltipWidth -
+        16;
     }
 
     if (top < margin) {
@@ -527,19 +728,25 @@ const HOVER_DELAY = 250;
       `${top}px`;
   }
 
+
   function showLoading(word) {
     tooltipElement.replaceChildren();
 
     const wordElement =
-      document.createElement("strong");
+      document.createElement(
+        "strong"
+      );
 
     wordElement.className =
       "zoonlogos-tooltip-word";
 
-    wordElement.textContent = word;
+    wordElement.textContent =
+      word;
 
     const messageElement =
-      document.createElement("span");
+      document.createElement(
+        "span"
+      );
 
     messageElement.className =
       "zoonlogos-tooltip-loading";
@@ -557,99 +764,127 @@ const HOVER_DELAY = 250;
     );
   }
 
+
   function showTranslation(
-  word,
-  result
-) {
-  tooltipElement.replaceChildren();
-
-  const header =
-    document.createElement("div");
-
-  header.className =
-    "zoonlogos-tooltip-header";
-
-  const wordElement =
-    document.createElement("span");
-
-  wordElement.className =
-    "zoonlogos-tooltip-word";
-
-  wordElement.textContent = word;
-
-  const arrowElement =
-    document.createElement("span");
-
-  arrowElement.className =
-    "zoonlogos-tooltip-arrow";
-
-  arrowElement.textContent = "→";
-
-  const meaningElement =
-    document.createElement("span");
-
-  meaningElement.className =
-    "zoonlogos-tooltip-meaning";
-
-  meaningElement.textContent =
-    result.meaning;
-
-  header.append(
-    wordElement,
-    arrowElement,
-    meaningElement
-  );
-
-  tooltipElement.appendChild(header);
-
-  if (result.sentenceTranslation) {
-    const sentenceElement =
-      document.createElement("p");
-
-    sentenceElement.className =
-      "zoonlogos-tooltip-sentence";
-
-    sentenceElement.textContent =
-      result.sentenceTranslation;
-
-    tooltipElement.appendChild(
-      sentenceElement
-    );
-  }
-
-  if (result.explanation) {
-    const explanationElement =
-      document.createElement("p");
-
-    explanationElement.className =
-      "zoonlogos-tooltip-explanation";
-
-    explanationElement.textContent =
-      result.explanation;
-
-    tooltipElement.appendChild(
-      explanationElement
-    );
-  }
-
-  tooltipElement.classList.add(
-    "zoonlogos-tooltip-visible"
-  );
-}
-
-  function showError(word, message) {
+    word,
+    result
+  ) {
     tooltipElement.replaceChildren();
 
+    const header =
+      document.createElement(
+        "div"
+      );
+
+    header.className =
+      "zoonlogos-tooltip-header";
+
     const wordElement =
-      document.createElement("strong");
+      document.createElement(
+        "span"
+      );
 
     wordElement.className =
       "zoonlogos-tooltip-word";
 
-    wordElement.textContent = word;
+    wordElement.textContent =
+      word;
+
+    const arrowElement =
+      document.createElement(
+        "span"
+      );
+
+    arrowElement.className =
+      "zoonlogos-tooltip-arrow";
+
+    arrowElement.textContent =
+      "→";
+
+    const meaningElement =
+      document.createElement(
+        "span"
+      );
+
+    meaningElement.className =
+      "zoonlogos-tooltip-meaning";
+
+    meaningElement.textContent =
+      result.meaning;
+
+    header.append(
+      wordElement,
+      arrowElement,
+      meaningElement
+    );
+
+    tooltipElement.appendChild(
+      header
+    );
+
+    if (
+      result.sentenceTranslation
+    ) {
+      const sentenceElement =
+        document.createElement(
+          "p"
+        );
+
+      sentenceElement.className =
+        "zoonlogos-tooltip-sentence";
+
+      sentenceElement.textContent =
+        result.sentenceTranslation;
+
+      tooltipElement.appendChild(
+        sentenceElement
+      );
+    }
+
+    if (result.explanation) {
+      const explanationElement =
+        document.createElement(
+          "p"
+        );
+
+      explanationElement.className =
+        "zoonlogos-tooltip-explanation";
+
+      explanationElement.textContent =
+        result.explanation;
+
+      tooltipElement.appendChild(
+        explanationElement
+      );
+    }
+
+    tooltipElement.classList.add(
+      "zoonlogos-tooltip-visible"
+    );
+  }
+
+
+  function showError(
+    word,
+    message
+  ) {
+    tooltipElement.replaceChildren();
+
+    const wordElement =
+      document.createElement(
+        "strong"
+      );
+
+    wordElement.className =
+      "zoonlogos-tooltip-word";
+
+    wordElement.textContent =
+      word;
 
     const messageElement =
-      document.createElement("span");
+      document.createElement(
+        "span"
+      );
 
     messageElement.className =
       "zoonlogos-tooltip-error";
@@ -668,6 +903,7 @@ const HOVER_DELAY = 250;
     );
   }
 
+
   function clearActiveWord() {
     cancelHoverTimer();
 
@@ -677,18 +913,26 @@ const HOVER_DELAY = 250;
     hideTooltip();
   }
 
+
   function cancelHoverTimer() {
-    if (hoverTimer) {
-      window.clearTimeout(hoverTimer);
-      hoverTimer = null;
+    if (!hoverTimer) {
+      return;
     }
+
+    window.clearTimeout(
+      hoverTimer
+    );
+
+    hoverTimer = null;
   }
+
 
   function hideTooltip() {
     tooltipElement?.classList.remove(
       "zoonlogos-tooltip-visible"
     );
   }
+
 
   function showStatus(message) {
     const textElement =
@@ -697,13 +941,17 @@ const HOVER_DELAY = 250;
       );
 
     if (textElement) {
-      textElement.textContent = message;
+      textElement.textContent =
+        message;
     }
   }
 
+
   function isVisible(element) {
     const style =
-      window.getComputedStyle(element);
+      window.getComputedStyle(
+        element
+      );
 
     const rectangle =
       element.getBoundingClientRect();
@@ -717,15 +965,20 @@ const HOVER_DELAY = 250;
     );
   }
 
+
   function normalizeText(text) {
     return String(text || "")
       .replace(/\s+/g, " ")
       .trim();
   }
 
+
   function cleanWord(word) {
     return word
       .replace(/’/g, "'")
-      .replace(/^[-']+|[-']+$/g, "");
+      .replace(
+        /^[-']+|[-']+$/g,
+        ""
+      );
   }
 })();
