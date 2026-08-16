@@ -1,10 +1,9 @@
 {
   "manifest_version": 3,
   "name": "ZoonLogos",
-  "version": "0.1.0",
-  "description": "Prime Video için bağlamsal altyazı çevirmeni.",
+  "version": "1.0.0",
+  "description": "Prime Video için bağlamsal İngilizce-Türkçe altyazı yardımcısı.",
   "permissions": [
-    "activeTab",
     "storage"
   ],
   "host_permissions": [
