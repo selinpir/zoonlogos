@@ -145,7 +145,7 @@ ZoonLogos yalnızca kullanıcı bir altyazı kelimesi üzerinde işlem yaptığ�
 
 - Chrome Web Store: Yakında
 - Demo videosu: Yakında
-- Gizlilik politikası: `PRIVACY_POLICY_URL`
+- Gizlilik politikası: `https://zoonlogos-api.onrender.com/privacy.html`
 
 ## Proje durumu
 
