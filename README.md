@@ -156,9 +156,9 @@ ZoonLogos yalnızca kullanıcı bir altyazı kelimesi üzerinde işlem yaptığ�
 - [x] Popup etkinleştirme ayarı
 - [x] Render üzerinde API yayını
 - [x] Gizlilik sayfası
-- [ ] Güvenlik denetimi
+- [x] Güvenlik denetimi
 - [ ] Chrome Web Store incelemesi
-- [ ] Demo videosu
+- [x] Demo videosu
 
 ## Bağımsızlık bildirimi
 
