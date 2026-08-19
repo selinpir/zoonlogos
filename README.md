@@ -143,9 +143,9 @@ ZoonLogos yalnızca kullanıcı bir altyazı kelimesi üzerinde işlem yaptığ�
 
 ## Demo ve bağlantılar
 
-- Chrome Web Store: Yakında
-- Demo videosu: Yakında
-- Gizlilik politikası: `https://zoonlogos-api.onrender.com/privacy.html`
+- [Chrome Web Store](https://chromewebstore.google.com/detail/zoonlogos/bjaahajnnjileocnmamiilongijadngb?hl=tr&authuser=2&utm_source=ext_sidebar)
+- [Demo videosu](https://youtu.be/sU5UximSfdk?si=I_vlxx7zuLRjpSvw)
+- [Gizlilik politikası](https://zoonlogos-api.onrender.com/privacy.html)
 
 ## Proje durumu
 
@@ -157,7 +157,7 @@ ZoonLogos yalnızca kullanıcı bir altyazı kelimesi üzerinde işlem yaptığ�
 - [x] Render üzerinde API yayını
 - [x] Gizlilik sayfası
 - [x] Güvenlik denetimi
-- [ ] Chrome Web Store incelemesi
+- [x] Chrome Web Store incelemesi
 - [x] Demo videosu
 
 ## Bağımsızlık bildirimi
