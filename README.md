@@ -4,7 +4,7 @@ Prime Video'daki İngilizce altyazılarda yer alan kelimelerin, içinde bulunduk
 
 ZoonLogos, kullanıcı altyazıdaki bir kelimenin üzerine geldiğinde kelimenin bağlama uygun anlamını, altyazı cümlesinin Türkçe çevirisini ve kısa bir kullanım açıklamasını sunar.
 
-> Proje şu anda Chrome Web Store yayın sürecine hazırlanmaktadır.
+
 
 ## Özellikler
 
